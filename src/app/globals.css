@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Base colors defined in theme-context.tsx */
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    letter-spacing: 0.025em;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-mono font-semibold;
+  }
+}
+
+@layer components {
+  .dark .card-gradient-glow {
+    position: relative;
+  }
+
+  .dark .card-gradient-glow::before {
+    content: "";
+    position: absolute;
+    inset: -1.5px;
+    z-index: -1;
+    border-radius: calc(var(--radius) + 3px);
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      hsla(var(--peach), 0.9) 0deg,
+      hsla(var(--flamingo) / 0.9) 60deg,
+      hsl(var(--background)) 110deg,
+      hsl(var(--background)) 250deg,
+      hsla(var(--flamingo) / 0.9) 300deg,
+      hsla(var(--peach) / 0.9) 360deg
+    );
+    animation: gradient 4s linear infinite;
+    opacity: 0.8;
+    filter: blur(16px);
+  }
+}
+
+@layer utilities {
+  .mesh-gradient {
+    background-image:
+      radial-gradient(ellipse 50% 80% at 20% 40%, hsla(var(--peach), 0.3), transparent),
+      radial-gradient(ellipse 50% 80% at 80% 50%, hsla(var(--flamingo), 0.3), transparent);
+    background-size: 100% 100%;
+    animation: wave 10s ease-in-out infinite;
+  }
+
+  .dark .mesh-gradient {
+    background-image:
+        radial-gradient(ellipse 50% 80% at 20% 40%, hsla(var(--peach), 0.4), transparent),
+        radial-gradient(ellipse 50% 80% at 80% 50%, hsla(var(--flamingo), 0.4), transparent);
+  }
+
+  body.theme-nord {
+    background-image: url('/images/themes/nord-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  @keyframes wave {
+    0% { background-position: 0% 50%, 0% 50%; }
+    50% { background-position: 100% 50%, 0% 50%; }
+    100% { background-position: 0% 50%, 0% 50%; }
+  }
+}
