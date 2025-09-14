@@ -53,7 +53,7 @@ export default function LearnPage() {
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground mb-4">
           Investigation Paths
         </h1>
-        <p className="max-w-3xl text-lg md:text-xl text-muted-foreground mb-8 font-serif">
+        <p className="max-w-3xl text-lg md:text-xl text-muted-foreground mb-8 font-sans">
           Structured paths to guide you from a new recruit to an expert analyst in various digital forensic domains.
           Choose a path and start your investigation.
         </p>

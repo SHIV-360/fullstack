@@ -58,7 +58,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md bg-card/80 backdrop-blur-lg border-white/20 text-card-foreground z-10">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold">Welcome Back, Analyst</CardTitle>
-          <CardDescription className="text-muted-foreground font-serif">
+          <CardDescription className="text-muted-foreground font-sans">
             Enter your credentials to access your dashboard.
           </CardDescription>
         </CardHeader>

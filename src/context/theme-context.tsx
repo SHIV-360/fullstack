@@ -47,11 +47,11 @@ const applyTheme = (themeName: string, mode: string | undefined) => {
 };
 
 const ThemeController = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setThemeState] = useState("catppuccin");
+  const [theme, setThemeState] = useState("nord");
   const { theme: mode, setTheme: setMode } = useNextTheme();
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("app-theme") || "catppuccin";
+    const storedTheme = localStorage.getItem("app-theme") || "nord";
     setThemeState(storedTheme);
   }, []);
 

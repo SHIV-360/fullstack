@@ -64,7 +64,7 @@ export default function CompetePage() {
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground mb-4">
             Compete & Conquer
           </h1>
-          <p className="max-w-3xl text-lg md:text-xl text-muted-foreground mb-8 font-serif">
+          <p className="max-w-3xl text-lg md:text-xl text-muted-foreground mb-8 font-sans">
             Test your forensic skills against the best in our Capture The Flag competitions.
             Join a team, climb the ranks, and win prizes.
           </p>

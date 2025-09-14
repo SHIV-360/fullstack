@@ -136,7 +136,7 @@ export default function PathDetailPage() {
 
         <main className="w-full md:w-2/3 lg:w-3/4">
           <h1 className="text-4xl font-bold mb-2 font-mono">Case Files</h1>
-          <p className="text-muted-foreground mb-8 font-serif">Work through the modules below to complete the investigation path.</p>
+          <p className="text-muted-foreground mb-8 font-sans">Work through the modules below to complete the investigation path.</p>
           <Accordion type="single" collapsible className="w-full space-y-4">
             {modules.map((module: any, index: number) => (
               <AccordionItem value={`item-${index}`} key={index} className="bg-card/80 backdrop-blur-sm border rounded-lg card-gradient-glow">

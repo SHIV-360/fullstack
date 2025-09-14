@@ -97,7 +97,7 @@ export const themes: Theme[] = [
         popover: '240 7% 18%', // #313244
         popoverForeground: '224 44% 86%', // #cdd6f4
         primary: '272 49% 79%', // #cba6f7 (Mauve)
-        primaryForeground: '240 10% 15%', // #1e1e2e
+        primaryForeground: '0 0% 100%', // #1e1e2e
         secondary: '240 6% 23%', // #45475a
         secondaryForeground: '224 44% 86%', // #cdd6f4
         muted: '240 7% 18%', // #313244
@@ -174,7 +174,7 @@ export const themes: Theme[] = [
         popover: '200 13% 18%',
         popoverForeground: '43 27% 84%',
         primary: '80 34% 60%', // #a7c080 (Green)
-        primaryForeground: '200 13% 18%',
+        primaryForeground: '0 0% 100%',
         secondary: '200 13% 23%', // #343f44
         secondaryForeground: '43 27% 84%',
         muted: '200 13% 23%',
@@ -252,7 +252,7 @@ export const themes: Theme[] = [
         popover: '234 30% 15%',
         popoverForeground: '226 25% 76%',
         primary: '214 96% 73%', // #7aa2f7 (Blue)
-        primaryForeground: '235 28% 13%',
+        primaryForeground: '0 0% 100%',
         secondary: '235 28% 25%', // Darker blue for hover
         secondaryForeground: '0 0% 100%',
         muted: '234 30% 15%',
@@ -330,7 +330,7 @@ export const themes: Theme[] = [
         popover: '0 0% 100%',
         popoverForeground: '214 36% 28%',
         primary: '210 21% 58%',
-        primaryForeground: '214 36% 28%',
+        primaryForeground: '0 0% 100%',
         secondary: '212 25% 90%',
         secondaryForeground: '214 36% 28%',
         muted: '212 25% 90%',

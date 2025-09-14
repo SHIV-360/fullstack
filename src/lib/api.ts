@@ -1,3 +1,4 @@
+
 import {
   getFirestore,
   collection,
@@ -8,7 +9,9 @@ import {
   where,
   limit,
   orderBy,
-  Timestamp
+  Timestamp,
+  setDoc,
+  serverTimestamp,
 } from 'firebase/firestore';
 import { app, db, auth, isFirebaseEnabled } from './firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
@@ -29,6 +32,24 @@ export const apiLogout = async () => {
     if (!isFirebaseEnabled || !auth) return;
     return await signOut(auth);
 }
+
+// --- DATA MUTATION FUNCTIONS ---
+export const createUserProfile = async (uid: string, username: string, email: string) => {
+    if (!isFirebaseEnabled || !db) return;
+    try {
+        await setDoc(doc(db, "users", uid), {
+            uid,
+            username,
+            email,
+            role: "user",
+            subscription: "free",
+            createdAt: serverTimestamp(),
+        });
+    } catch (error) {
+        console.error("Error creating user profile:", error);
+    }
+}
+
 
 // --- DATA FETCHING FUNCTIONS ---
 
@@ -125,27 +146,17 @@ export const getTeamById = async (teamId: string) => {
 
 export const getOngoingPathsForUser = async (userId: string) => {
     if (!isFirebaseEnabled) return [];
-
-    // In a real app, you would fetch from a subcollection: /users/{userId}/ongoingPaths
-    // For now, we mock some progress on a few existing paths for demonstration purposes
-    const allPaths = await getPaths();
-    if (!allPaths.length) return [];
-    
-    return allPaths.slice(0, 2).map((path: any) => ({
-        ...path,
-        progress: Math.floor(Math.random() * 50) + 20,
-    }));
+    // In a real app, this would fetch from a user's subcollection.
+    // For a new user, this should be empty.
+    return [];
 };
 
 export const getRecentActivityForUser = async (userId: string) => {
      if (!isFirebaseEnabled) return [];
      
      // In a real app, you'd fetch from a subcollection: /users/{userId}/activity
-     // For demo, we are returning some hardcoded recent activity.
-     return [
-        { id: '1', description: "Completed the 'Volatile Data Collection' lab.", timestamp: new Date().toISOString() },
-        { id: '2', description: "Earned the 'Memory Forensics Basics' badge.", timestamp: new Date(Date.now() - 86400000).toISOString() },
-     ].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+     // For a new user, this should be empty.
+     return [];
 }
 
 export const getLeaderboardData = async () => {

@@ -68,7 +68,7 @@ export default function SignUpPage() {
     } else {
       setIsSubmitting(true)
       const finalData = newFormData as FormData;
-      const success = await signup(finalData.email, finalData.password);
+      const success = await signup(finalData.email, finalData.password, finalData.username);
       if(success) {
         router.push('/dashboard');
       } else {
@@ -107,7 +107,7 @@ export default function SignUpPage() {
       <div className="z-10 w-full max-w-md px-4">
         <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-primary mb-2">Join the Investigation</h1>
-            <p className="text-muted-foreground font-serif">Start your journey into digital forensics.</p>
+            <p className="text-muted-foreground font-sans">Start your journey into digital forensics.</p>
         </div>
         
         <div className="h-[200px]">
@@ -127,7 +127,7 @@ export default function SignUpPage() {
                             name={fieldName}
                             render={({ field }) => (
                             <FormItem>
-                                <FormLabel className="text-lg font-serif">{labels[fieldName]}</FormLabel>
+                                <FormLabel className="text-lg font-sans">{labels[fieldName]}</FormLabel>
                                 <FormControl>
                                 <div className="flex items-center gap-2">
                                 <Input 

@@ -88,7 +88,7 @@ export default function PricingPage() {
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground mb-4">
             Find the Plan That's Right for You
           </h1>
-          <p className="max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground mb-8 font-serif">
+          <p className="max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground mb-8 font-sans">
             Whether you're just starting out or scaling your team's skills, we have a plan for you.
           </p>
         </div>
@@ -141,7 +141,7 @@ export default function PricingPage() {
         <Accordion type="single" collapsible className="max-w-3xl mx-auto">
             {faqs.map((faq, i) => (
                  <AccordionItem value={`item-${i}`} key={i}>
-                    <AccordionTrigger className='text-base text-left md:text-lg font-serif'>{faq.question}</AccordionTrigger>
+                    <AccordionTrigger className='text-base text-left md:text-lg font-sans'>{faq.question}</AccordionTrigger>
                     <AccordionContent className='text-base text-muted-foreground font-sans'>
                         {faq.answer}
                     </AccordionContent>

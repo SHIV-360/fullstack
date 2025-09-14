@@ -155,7 +155,7 @@ function HeroSection() {
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground mb-4 font-mono">
           Your <span className="text-primary">Digital Forensics</span> Career Starts Here
         </h1>
-        <p className="max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground mb-8 font-serif">
+        <p className="max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground mb-8 font-sans">
           ForensicHub is a hands-on, interactive platform for learning digital forensics.
           Start with the basics or dive into advanced investigation techniques.
         </p>

@@ -57,7 +57,7 @@ export function ThemeSwitcher() {
           <span>Dark</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setMode("system")} disabled={isDarkModeOnly || isLightModeOnly}>
-          <Moon className="mr-2 h-4 w-4" />
+          <Sun className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

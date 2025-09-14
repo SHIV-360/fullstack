@@ -37,7 +37,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="flex items-center gap-2">
@@ -155,10 +155,12 @@ export function Header() {
                             <span>Dashboard</span>
                           </DropdownMenuItem>
                         </Link>
-                        <DropdownMenuItem>
-                          <UserIcon className="mr-2" />
-                          <span>Profile</span>
-                        </DropdownMenuItem>
+                         <Link href="/dashboard/profile">
+                          <DropdownMenuItem>
+                            <UserIcon className="mr-2" />
+                            <span>Profile</span>
+                          </DropdownMenuItem>
+                        </Link>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={logout}>
                           <LogOut className="mr-2" />

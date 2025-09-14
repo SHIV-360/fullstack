@@ -12,9 +12,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-reddit-sans)', ...fontFamily.sans],
-        serif: ['var(--font-fjord-one)', ...fontFamily.serif],
-        mono: ['var(--font-jura)', ...fontFamily.mono],
+        sans: ['var(--font-space-mono)', ...fontFamily.sans],
+        mono: ['var(--font-space-mono)', ...fontFamily.mono],
       },
       colors: {
         background: 'hsl(var(--background))',

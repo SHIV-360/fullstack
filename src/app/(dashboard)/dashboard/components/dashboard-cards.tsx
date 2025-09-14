@@ -136,16 +136,9 @@ export function LearningHoursChart() {
                 return;
             }
             setLoading(true);
-            // This would be replaced with a real API call
-            const data = Array.from({ length: 7 }).map((_, i) => {
-                const date = new Date();
-                date.setDate(new Date().getDate() - (6 - i));
-                return {
-                    day: date.toLocaleDateString('en-US', { weekday: 'short' }),
-                    hours: Math.random() * 4,
-                }
-            });
-            setLearningHoursData(data);
+            // In a real app, this data would come from an API based on user activity.
+            // For a new user, it should be empty.
+            setLearningHoursData([]);
             setLoading(false);
         }
         fetchLearningData();

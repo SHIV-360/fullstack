@@ -80,4 +80,47 @@
     50% { background-position: 100% 50%, 0% 50%; }
     100% { background-position: 0% 50%, 0% 50%; }
   }
+
+  /* --- New Sidebar Tree Lines --- */
+  [data-sidebar="menu"] {
+    @apply ml-3; /* Indent the entire menu */
+  }
+
+  [data-sidebar="menu-item"] {
+    position: relative;
+    padding-left: 1.25rem; /* Space for the lines */
+  }
+  
+  [data-sidebar="menu-item"] > a > button span {
+    @apply flex items-center gap-2;
+  }
+
+  /* Vertical line */
+  [data-sidebar="menu-item"]::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: hsl(var(--border));
+    opacity: 0.8;
+  }
+
+  /* Horizontal line */
+  [data-sidebar="menu-item"]::after {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 1rem; /* Vertically center with the button */
+    width: 0.75rem;
+    height: 1px;
+    background-color: hsl(var(--border));
+    opacity: 0.8;
+  }
+  
+  /* Truncate the vertical line for the last item in the menu */
+  [data-sidebar="menu-item"]:last-child::before {
+    height: 1rem;
+  }
 }

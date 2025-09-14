@@ -2,10 +2,10 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { User } from 'firebase/auth';
+import { User, updateProfile } from 'firebase/auth';
 import { Loader2 } from 'lucide-react';
 import { auth as firebaseAuth, isFirebaseEnabled } from '@/lib/firebase';
-import { getUserProfile, apiLogin, apiSignup, apiLogout } from '@/lib/api';
+import { getUserProfile, apiLogin, apiSignup, apiLogout, createUserProfile } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -26,7 +26,7 @@ interface AuthContextType {
   userData: UserProfile | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<boolean>;
-  signup: (email: string, password: string) => Promise<boolean>;
+  signup: (email: string, password: string, username: string) => Promise<boolean>;
   logout: () => void;
 }
 
@@ -46,8 +46,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (!isFirebaseEnabled) {
-      console.error("[ForensicHub] Firebase is not configured. Please create a .env.local file with your Firebase credentials. See README.md for details.");
+    if (!isFirebaseEnabled || !isClient) {
       setLoading(false);
       return;
     }
@@ -65,7 +64,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [isClient]);
   
   const login = async (email: string, password: string) => {
     if (!isFirebaseEnabled) {
@@ -91,15 +90,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
-  const signup = async (email: string, password: string) => {
+  const signup = async (email: string, password: string, username: string) => {
      if (!isFirebaseEnabled) {
         toast({ title: "Demo Mode", description: "Signup is disabled because Firebase is not configured."});
         return false;
     }
      setLoading(true);
      try {
-      await apiSignup(email, password);
-      // Auth state change will handle the rest
+      const userCredential = await apiSignup(email, password);
+      const newUser = userCredential.user;
+      if (newUser) {
+        // Set the display name in Firebase Auth
+        await updateProfile(newUser, { displayName: username });
+        // Create the user document in Firestore
+        await createUserProfile(newUser.uid, username, email);
+        
+        // Manually update the user and user data state so the new info is reflected immediately
+        const newProfile = await getUserProfile(newUser.uid) as UserProfile;
+        setUser({ ...newUser, displayName: username });
+        setUserData(newProfile);
+      }
       toast({ title: "Signup Successful", description: "Welcome to ForensicHub!" });
       setLoading(false);
       return true;
@@ -138,17 +148,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     logout,
   };
 
-  // On the first render (on server and initial client render), return null.
   if (!isClient) {
     return null;
   }
   
-  if (loading || !isFirebaseEnabled) {
+  if (loading && isClient) {
     return (
       <div className="flex h-screen w-full items-center justify-center">
         <div className="flex flex-col items-center gap-4">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            <p className="text-muted-foreground">{isFirebaseEnabled ? 'Loading...' : 'Initializing...'}</p>
+            <p className="text-muted-foreground">{isFirebaseEnabled ? 'Authenticating...' : 'Initializing...'}</p>
         </div>
       </div>
     );

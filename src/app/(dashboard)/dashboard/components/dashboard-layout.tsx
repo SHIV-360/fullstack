@@ -10,10 +10,12 @@ import {
   SidebarHeader,
   SidebarContent,
   SidebarFooter,
-  SidebarMenu,
+  SidebarMenu as BaseSidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
   useSidebar,
+  SidebarGroup as BaseSidebarGroup,
+  SidebarGroupLabel as BaseSidebarGroupLabel
 } from "@/components/ui/sidebar";
 import { SheetHeader as RadixSheetHeader, SheetTitle } from "@/components/ui/sheet";
 
@@ -81,7 +83,7 @@ export function DashboardNavContent({ children }: { children: React.ReactNode })
 export function DashboardNavMain({ children }: { children: React.ReactNode }) {
   return (
     <SidebarContent className="p-0">
-      <SidebarMenu className="px-2">{children}</SidebarMenu>
+      {children}
     </SidebarContent>
   );
 }
@@ -109,6 +111,18 @@ export function DashboardNavLink({
       </Link>
     </SidebarMenuItem>
   );
+}
+
+export function SidebarMenu({ children, className }: { children: React.ReactNode, className?: string }) {
+    return <BaseSidebarMenu className={cn("px-2", className)}>{children}</BaseSidebarMenu>
+}
+
+export function SidebarGroup({ children, className }: { children: React.ReactNode, className?: string }) {
+    return <BaseSidebarGroup className={cn(className)}>{children}</BaseSidebarGroup>
+}
+
+export function SidebarGroupLabel({ children, className }: { children: React.ReactNode, className?: string }) {
+    return <BaseSidebarGroupLabel className={cn("uppercase text-xs text-muted-foreground/80 tracking-wider px-2", className)}>{children}</BaseSidebarGroupLabel>
 }
 
 export function DashboardMain({ children }: { children: React.ReactNode }) {
